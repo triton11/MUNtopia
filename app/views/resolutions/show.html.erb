@@ -1,0 +1,62 @@
+<div class="container">
+	<div class="row">
+		<p id="notice"><%= notice %></p>
+
+		<p>
+		  <strong>Title:</strong>
+		  <%= @resolution.title %>
+		</p>
+
+		<p>
+		  <strong>Passed:</strong>
+		  <%= @resolution.passed %>
+		</p>
+		<p>
+		<strong>Signatories:</strong>
+			<% @resolution.users.each do |item| %>
+				<%= item.country %>,
+			<% end %>
+		</p>
+		<p>
+			<%= link_to 'Sign', "/resolutions/#{@resolution.id}/users", method: :post %> |
+			<%= link_to 'Unsign', "/resolutions/#{@resolution.id}/users", method: :delete %>
+		</p>
+		<p>
+		  <strong>Body:</strong>
+		  <%= raw @resolution.body %>
+		</p>
+		
+		<div class="badge">
+			<span style="color:black">
+				<%= link_to 'Edit', edit_resolution_path(@resolution) %>
+			</span> |
+				<%= link_to 'Back', resolutions_path %>
+		</div>
+		<div class="container">
+		  <div class="vertical-center-row">
+		    <div align="center">
+		    	<h4> Proposed Amendments </h4>
+		    	<table border="2" style="width:1000px;">
+	    		<thead>
+				    <tr>
+				      <th>Title</th>
+				      <th>Body</th>
+				      <th>Passed</th>
+				      <th>Edit</th>
+				      <th colspan="4"></th>
+				    </tr>
+				 </thead>
+				<% @resolution.amendments.each do |amendment| %>
+					<tr>
+						<td style="width:200px"><%= amendment.title %></td>
+						<td style="width:600px"><%= raw amendment.body %></td>
+						<td style="width:100px"><%= amendment.passed %></td>
+						<td><%= link_to 'Edit', edit_amendment_path(amendment, :resolution_id => @resolution.id) %></td>
+					</tr>
+				<% end %>
+				</table>
+			</div>
+		</div>
+	</div>
+</div>
+

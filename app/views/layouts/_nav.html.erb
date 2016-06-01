@@ -1,0 +1,34 @@
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+        <li>
+          <a class="nav-btn" href="/">Home</a>
+        </li>
+
+        <% if logged_in? %>
+          <li>
+            <%= link_to 'Logout', "/logout", method: :delete %>
+          </li>
+          <li>
+            <%= link_to 'New Resolution', "/resolutions/new" %>
+          </li>
+          <li>
+            <%= link_to 'Resolutions', "/resolutions" %>
+          </li>
+          <li>
+            <%= link_to 'Inbox', "/notes" %>
+          </li>
+          <li>
+            <%= link_to 'Pass a note', "/sent" %>
+          </li>
+          <% if current_user.name == "admin" %>
+            <li>
+              <%= link_to 'Users', "/users" %>
+            </li>
+          <% end %>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</nav>

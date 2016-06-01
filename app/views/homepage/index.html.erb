@@ -1,0 +1,27 @@
+
+<body class="homepage">
+	<div class="container">
+		<div class="vertical-center-row">
+			<div align="center">
+			<% if logged_in? %>
+				<h1 class="home">Hello <%= current_user.country %> </h1>
+			<% else %>
+				<h1 class="home">Welcome to MUNtopia! </h1>
+			<% end %>
+		</div>
+	</div>
+	<% if !logged_in? %>
+	<div class="container">
+		<div class="vertical-center-row">
+			<div align="center">
+				<a href="/login" class="btn btn-primary btn-lg" style="color: #FFF" role="button">
+					Log in
+				</a>
+				<a href="/users/new" class="btn btn-primary btn-lg" style="color: #FFF" role="button">
+					Sign up
+				</a>
+		    </div>
+		</div>
+	</div>
+	<% end %>
+</body>

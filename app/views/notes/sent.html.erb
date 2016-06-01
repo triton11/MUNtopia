@@ -1,0 +1,33 @@
+<body class="message">
+  <div class="container">
+    <div class="vertical-center-row">
+        <h1><%= link_to 'New Note', new_note_path, :class => "btn btn-primary btn-lg", :style => "color: #FFF"%></h1>
+    </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <h1>Passed Notes</h1>
+
+      <table border="5" style="width:900px; background-color:#FFF;">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Body</th>
+            <th>Reciever</th>
+            <th colspan="3"></th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <% @sentnotes.each do |note| %>
+            <tr>
+              <td style="width:100px;"><%= note.title %></td>
+              <td style="width:700px;"><%= note.body %></td>
+              <td style="width:100px;"><%= User.all.find(note.reciever).country %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+      <br>
+</body>

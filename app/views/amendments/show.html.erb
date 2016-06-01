@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @amendment.title %>
+</p>
+
+<p>
+  <strong>Passed:</strong>
+  <%= @amendment.passed %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @amendment.body %>
+</p>
+
+<p>
+  <strong>Resolution:</strong>
+  <%= @amendment.resolution %>
+</p>
+
+<%= link_to 'Edit', edit_amendment_path(@amendment) %> |
+<%= link_to 'Back', amendments_path %>
