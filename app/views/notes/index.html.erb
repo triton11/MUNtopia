@@ -20,7 +20,7 @@
             <tr>
               <td style="width:100px;"><%= note.title %></td>
               <td style="width:700px;"><%= note.body %></td>
-              <td style="width:100px;"><%= User.all.find(note.sender).country %></td>
+              <td style="width:100px;"><%= User.all.find(note.sender).name %></td>
               <td style="width:100px;"><%= link_to 'Delete', note, method: :delete, data: { confirm: 'Are you sure?' } %></td>
             </tr>
           <% end %>

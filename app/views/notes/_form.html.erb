@@ -24,7 +24,7 @@
   </div>
   <div class="field">
     <%= f.label "To" %><br>
-    <%= f.collection_select :reciever, User.all, :id, :country %>
+    <%= f.collection_select :reciever, User.all, :id, :name %>
   </div>
   <div class="actions">
     <%= f.submit %>

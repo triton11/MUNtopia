@@ -12,7 +12,7 @@
     </div>
   <% end %>
   <div class="field">
-    <%= f.label "Name" %><br>
+    <%= f.label "Country" %><br>
     <%= f.text_field :name %>
   </div>
   <div class="field">
@@ -20,8 +20,7 @@
     <%= f.text_field :email %>
   </div>
   <div class="field">
-    <%= f.label :country %><br>
-    <%= f.text_field :country %>
+    <%= f.hidden_field :country %>
   </div>
   <div class="field">
     <%= f.label :password %><br>

@@ -4,7 +4,7 @@
 		<div class="vertical-center-row">
 			<div align="center">
 			<% if logged_in? %>
-				<h1 class="home">Hello <%= current_user.country %> </h1>
+				<h1 class="home">Hello <%= current_user.name %> </h1>
 			<% else %>
 				<h1 class="home">Welcome to MUNtopia! </h1>
 			<% end %>
