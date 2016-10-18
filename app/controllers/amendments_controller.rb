@@ -4,6 +4,9 @@ class AmendmentsController < ApplicationController
   # GET /amendments
   # GET /amendments.json
   def index
+    unless logged_in? && current_user.name == "Tristrum"
+      redirect_to "/"
+    end
     @amendments = Amendment.all
   end
 

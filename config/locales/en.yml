@@ -21,3 +21,10 @@
 
 en:
   hello: "Hello world"
+
+en:
+  activerecord:
+    attributes:
+      user:
+        name: "Country"
+        name_confirmation: "Country confirmation"

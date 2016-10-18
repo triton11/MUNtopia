@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :organizations
   mount Ckeditor::Engine => '/ckeditor'
   resources :notes
   resources :amendments
@@ -6,6 +7,8 @@ Rails.application.routes.draw do
   resources :users
 
   get '/login' => 'session#new'
+  get '/group' => 'users#group'
+  get '/homepage/about' => 'homepage#about'
   post '/login' => 'session#create'
   delete '/logout' => 'session#destroy'
   get '/sent' => 'notes#sent'

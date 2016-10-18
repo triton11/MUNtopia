@@ -5,7 +5,6 @@
         <li>
           <a class="nav-btn" href="/">Home</a>
         </li>
-
         <% if logged_in? %>
           <li>
             <%= link_to 'Logout', "/logout", method: :delete %>
@@ -22,11 +21,21 @@
           <li>
             <%= link_to 'Pass a note', "/sent" %>
           </li>
-          <% if current_user.name == "admin" %>
+          <% if current_user.admin == true %>
             <li>
-              <%= link_to 'Users', "/users" %>
+              <%= link_to 'Users', "/group" %>
+            </li>
+            <li>
+              <%= link_to 'Organization', "/organizations/#{current_user.organization_id}" %>
             </li>
           <% end %>
+        <% else %>
+          <li>
+            <a class="nav-btn" href="/organizations/new">New Organization</a>
+          </li>
+          <li>
+            <a class="nav-btn" href="/homepage/about">About</a>
+          </li>
         <% end %>
       </ul>
     </div>

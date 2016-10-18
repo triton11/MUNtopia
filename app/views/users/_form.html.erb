@@ -12,19 +12,28 @@
     </div>
   <% end %>
   <div class="field">
+    <%= f.label "Organization" %><br>
+    <%= f.collection_select(:organization_id, Organization.all, :id, :name) %>
+  </div>
+  <div class="field">
+    <%= f.label "Organization Code:" %><br>
+    <%= f.text_field :code%>
+  </div>
+  <div class="field">
     <%= f.label "Country" %><br>
     <%= f.text_field :name %>
   </div>
   <div class="field">
-    <%= f.label "Organization" %><br>
-    <%= f.text_field :email %>
-  </div>
-  <div class="field">
-    <%= f.hidden_field :country %>
+    <%= f.label "Confirm your Country:" %> <br>
+    <%= f.text_field :name_confirmation %>
   </div>
   <div class="field">
     <%= f.label :password %><br>
-    <%= f.text_field :password_hash %>
+    <%= f.password_field :password_hash %>
+  </div>
+  <div class="field">
+    <%= f.label "Confirm your password:" %><br>
+    <%= f.password_field :password_hash_confirmation %>
   </div>
   <div class="actions">
     <%= f.submit %>

@@ -19,7 +19,7 @@
     <%= f.label :body %><br>
     <%= f.text_area :body, :as => :ckeditor, :input_html => {:height => 100, :ckeditor => {:toolbar => 'Mini'} } %>
   </div>
-  <% if current_user.name == "admin" %>
+  <% if current_user.admin == true %>
     <div class="field">
       <%= f.label :passed %><br>
       <%= f.check_box :passed %>

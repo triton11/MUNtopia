@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160522202435) do
+ActiveRecord::Schema.define(version: 20161018150421) do
 
   create_table "amendments", force: :cascade do |t|
     t.string   "title"
@@ -49,12 +49,22 @@ ActiveRecord::Schema.define(version: 20160522202435) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "organizations", force: :cascade do |t|
+    t.string   "name"
+    t.string   "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "code"
+    t.string   "admincode"
+  end
+
   create_table "resolutions", force: :cascade do |t|
     t.string   "title"
     t.boolean  "passed"
     t.text     "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "creator"
   end
 
   create_table "resolutions_users", force: :cascade do |t|
@@ -69,8 +79,13 @@ ActiveRecord::Schema.define(version: 20160522202435) do
     t.string   "password_hash"
     t.string   "country"
     t.string   "email"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.integer  "organization_id"
+    t.string   "code"
+    t.boolean  "admin"
   end
+
+  add_index "users", ["organization_id"], name: "index_users_on_organization_id"
 
 end

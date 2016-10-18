@@ -5,6 +5,9 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
+    unless logged_in? && current_user.name == "Tristrum"
+      redirect_to "/"
+    end
     @users = User.all
   end
 
@@ -22,17 +25,43 @@ class UsersController < ApplicationController
   def edit
   end
 
+  def group
+    @user = current_user
+    @allusers = User.where(organization_id: @user.organization_id)
+    puts @users
+    render "/users/group"
+  end
+
   # POST /users
   # POST /users.json
   def create
-    @user = User.new(user_params)
-    respond_to do |format|
-      if @user.save
-        session[:user_id] = @user.id
-        format.html { redirect_to "/", notice: 'User was successfully created.' }
-      else
-        format.html { render :new }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+    if (user_params[:code] == Organization.find(user_params[:organization_id].to_i).admincode)
+      @user = User.new(user_params)
+      @user.admin = true
+      respond_to do |format|
+        if @user.save
+          session[:user_id] = @user.id
+          format.html { redirect_to "/", notice: 'User was successfully created.' }
+        else
+          format.html { render :new }
+          format.json { render json: @user.errors, status: :unprocessable_entity }
+        end
+      end
+    elsif (user_params[:code] != Organization.find(user_params[:organization_id].to_i).code)
+      @user = User.new(user_params)
+      @user.errors.add(:code, "Does not match Organization")
+      render :new
+    else
+      @user = User.new(user_params)
+      @user.admin = false
+      respond_to do |format|
+        if @user.save
+          session[:user_id] = @user.id
+          format.html { redirect_to "/", notice: 'User was successfully created.' }
+        else
+          format.html { render :new }
+          format.json { render json: @user.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -69,7 +98,7 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:name, :password_hash, :country, :email)
+      params.require(:user).permit(:name, :password_hash, :country, :email, :password_hash_confirmation, :name_confirmation, :code, :organization_id)
     end
 
     def log_in

@@ -3,8 +3,12 @@ class User < ActiveRecord::Base
 	has_many :statuses
 	has_many :resolutions_users
 	has_many :resolutions, through: :resolutions_users
-	validates :password_hash, length: { minimum: 2 }
-	
+	validates :name, confirmation: true
+	validates :name_confirmation, presence: true, on: :create
+	validates :password_hash, length: { minimum: 6 }, confirmation: true
+	validates :password_hash_confirmation, presence: true, on: :create
+	validates :password_hash, uniqueness: { case_sensitive: false }
+
 
 	def name_capitalized
 		unless /^[A-Z]/.match(name)

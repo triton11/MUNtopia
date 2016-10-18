@@ -4,6 +4,16 @@ class ResolutionsController < ApplicationController
   # GET /resolutions
   # GET /resolutions.json
   def index
+    @groupusers = User.where(organization_id: current_user.organization_id)
+    @groupresolutions = []
+    @groupusers.each do |item| 
+      Resolution.all.each do |addition|
+        if (addition.creator == item.id && !(@groupresolutions.include?(addition)))
+          @groupresolutions << addition
+        end
+      end
+    end
+    puts @groupresolutions
     @resolutions = Resolution.all
   end
 
@@ -25,6 +35,7 @@ class ResolutionsController < ApplicationController
   # POST /resolutions.json
   def create
     @resolution = Resolution.new(resolution_params)
+    @resolution.creator = current_user.id
 
     respond_to do |format|
       if @resolution.save

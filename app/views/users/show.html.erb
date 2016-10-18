@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Name:</strong>
+  <strong>Country:</strong>
   <%= @user.name %>
 </p>
 
@@ -11,13 +11,8 @@
 </p>
 
 <p>
-  <strong>Country:</strong>
-  <%= @user.country %>
-</p>
-
-<p>
-  <strong>Email:</strong>
-  <%= @user.email %>
+  <strong>Code:</strong>
+  <%= @user.code %>
 </p>
 
 <%= link_to 'Edit', edit_user_path(@user) %> |
